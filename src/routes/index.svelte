@@ -4,8 +4,23 @@
 	let scope = 'PARAGRAPH';
 
 	function generateLorem() {
-		// send generate request here and display the result
-		alert(`Generate Lorem Ipsum with ${amount} paragraphs and ${scope} scope and ${start} start`);
+		fetch('/api/generate', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				amount: amount,
+				start: start,
+				scope: scope
+			})
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log('Data:', data);
+				document.getElementById('lorem').innerHTML = data.data;
+			})
+			.catch((error) => console.error('Error:', error));
 	}
 </script>
 
@@ -48,6 +63,10 @@
 		<!-- define submit button -->
 		<button type="submit">Generate</button>
 	</form>
+
+	<div>
+		<p id="lorem" />
+	</div>
 </section>
 
 <style>
