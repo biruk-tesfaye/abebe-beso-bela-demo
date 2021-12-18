@@ -1,9 +1,12 @@
-<script context="module" lang="ts">
-	export const prerender = true;
-</script>
-
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+	let amount: number = 1;
+	let start = false;
+	let scope = 'PARAGRAPH';
+
+	function generateLorem() {
+		// send generate request here and display the result
+		alert(`Generate Lorem Ipsum with ${amount} paragraphs and ${scope} scope and ${start} start`);
+	}
 </script>
 
 <svelte:head>
@@ -11,49 +14,41 @@
 </svelte:head>
 
 <section>
-	<h1>
-		<div class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
-		</div>
+	<h1>Welcome</h1>
+	<p>Abebe Beso bela</p>
 
-		to your new<br />SvelteKit app
-	</h1>
+	<form on:submit|preventDefault={generateLorem}>
+		<!-- define number input value -->
+		<label for="amount">
+			<input type="number" name="amount" id="amount" bind:value={amount} min="1" max="100" />
+		</label>
 
-	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
-	</h2>
+		<label for="paragraph">
+			<input
+				type="radio"
+				id="paragraph"
+				name="scope"
+				bind:group={scope}
+				value="PARAGRAPH"
+				checked
+			/>
+			<span>paragraph</span>
+		</label>
+		<label for="words">
+			<input type="radio" id="words" name="scope" bind:group={scope} value="WORDS" />
+			<span>words</span>
+		</label>
 
-	<Counter />
+		<!-- define check box input  -->
+		<label for="checkbox">
+			<input type="checkbox" id="checkbox" name="checkbox" bind:checked={start} />
+			<span>Start with abebe beso bela</span>
+		</label>
+
+		<!-- define submit button -->
+		<button type="submit">Generate</button>
+	</form>
 </section>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
 </style>
