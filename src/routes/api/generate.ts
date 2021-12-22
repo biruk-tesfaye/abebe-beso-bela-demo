@@ -1,5 +1,5 @@
 
-import words from '$lib/data/words.json';
+import words from '$lib/data/_.json';
 export type IGenerate = {
     amount: number
     start: boolean
@@ -38,7 +38,7 @@ export async function generate(body: IGenerate) {
 
 function generateParagraph() {
     const paragraph = []
-    const sentence = getRandomNumber(MIN_WORDS_PER_SENTENCE, MAX_WORDS_PER_SENTENCE)
+    const sentence = getRandomNumber(MIN_SENTENCES_PER_PARAGRAPH, MAX_SENTENCES_PER_PARAGRAPH)
 
     for (let i = 0; i < sentence; i++) {
         paragraph.push(`${generateSentence()}`)
@@ -63,6 +63,8 @@ function generateSentence() {
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+
 
 
 type IGeneratedResponse = {
@@ -91,5 +93,10 @@ export async function post(request): Promise<EndpointOutput> {
         }
     }
 }
+
+
+
+
+
 
 
