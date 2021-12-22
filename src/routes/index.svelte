@@ -3,7 +3,14 @@
 	let start = false;
 	let scope = 'PARAGRAPH';
 
+	let resScope = 'PARAGRAPH';
+
+	let submit = false;
+
+	let generatedData = [];
+
 	function generateLorem() {
+		submit = true;
 		fetch('/api/generate', {
 			method: 'POST',
 			headers: {
@@ -17,10 +24,15 @@
 		})
 			.then((response) => response.json())
 			.then((data) => {
+				submit = false;
 				console.log('Data:', data);
-				document.getElementById('lorem').innerHTML = data.data;
+				generatedData = data.generated;
+				resScope = data.scope;
 			})
-			.catch((error) => console.error('Error:', error));
+			.catch(() => {
+				console.error;
+				submit = false;
+			});
 	}
 </script>
 
@@ -64,9 +76,23 @@
 		<button type="submit">Generate</button>
 	</form>
 
-	<div>
-		<p id="lorem" />
-	</div>
+	{#if submit}
+		<div>loading...</div>
+	{:else if generatedData.length === 0}
+		<div>
+			<p>No data found</p>
+		</div>
+	{:else if generatedData.length > 0}
+		<div>
+			{#if resScope === 'PARAGRAPH'}
+				{#each generatedData as data}
+					<p>{data}</p>
+				{/each}
+			{:else if resScope === 'WORDS'}
+				{generatedData.join(' ')}
+			{/if}
+		</div>
+	{/if}
 </section>
 
 <style>
