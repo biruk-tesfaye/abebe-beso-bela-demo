@@ -41,7 +41,7 @@
 </svelte:head>
 
 <section>
-	<h1>Welcome</h1>
+	<h1 class="text-primary-default">Welcome</h1>
 	<p>Abebe Beso bela</p>
 
 	<form on:submit|preventDefault={generateLorem}>
