@@ -6,6 +6,7 @@ module.exports = {
 				primary: {
 					default: '#146356',
 					light: '#3B5249',
+					'ex-light': '#e5eeec',
 					bg: '#1F4541'
 				},
 				secondary: {
@@ -16,6 +17,10 @@ module.exports = {
 					light: '#F5F6FF',
 					dark: '#10332E'
 				}
+			},
+			boxShadow: {
+				input: 'inset 0 0 0 0.125em #146356',
+				'input-checked': 'inset 0 0 0 0.4378em #146356'
 			}
 		},
 		plugins: []

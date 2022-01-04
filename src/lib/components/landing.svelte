@@ -49,17 +49,57 @@
 						<input type="number" class="w-full h-10 border rounded bg-bg-light" />
 						<div class="grid gap-8">
 							<!-- three radio inputs -->
-							<label for="words">
-								<input type="radio" id="words" name="scope" value="WORDS" />
-								<span>words</span>
+							<label
+								for="words"
+								class="flex cursor-pointer font-medium overflow-hidden
+							 items-center "
+							>
+								<input
+									checked
+									type="radio"
+									id="words"
+									name="scope"
+									value="WORDS"
+									class="peer hidden "
+								/>
+								<span
+									class="input-span peer-checked:bg-primary-ex-light peer-checked:before:shadow-input-checked"
+									>words</span
+								>
 							</label>
-							<label for="sentences">
-								<input type="radio" id="sentences" name="scope" value="SENTENCES" />
-								<span>sentences</span>
+							<label
+								for="sentences"
+								class="flex cursor-pointer font-medium overflow-hidden
+							items-center "
+							>
+								<input
+									type="radio"
+									id="sentences"
+									name="scope"
+									value="SENTENCES"
+									class="peer hidden "
+								/>
+								<span
+									class="input-span peer-checked:bg-primary peer-checked:before:shadow-input-checked"
+									>sentences</span
+								>
 							</label>
-							<label for="paragraphs">
-								<input type="radio" id="paragraphs" name="scope" value="PARAGRAPHS" />
-								<span>paragraphs</span>
+							<label
+								for="paragraphs"
+								class="flex cursor-pointer font-medium overflow-hidden
+							items-center "
+							>
+								<input
+									type="radio"
+									id="paragraphs"
+									name="scope"
+									value="PARAGRAPHS"
+									class="peer hidden "
+								/>
+								<span
+									class="input-span peer-checked:bg-primary peer-checked:before:shadow-input-checked"
+									>paragraphs</span
+								>
 							</label>
 						</div>
 

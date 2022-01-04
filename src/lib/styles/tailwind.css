@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input-span {
+	@apply before:flex 
+	before:content-['']
+  before:bg-white 
+   before:w-6 before:h-6 
+   before:rounded-xl before:mr-1 
+   before:transition before:duration-300 
+   before:ease-in before:shadow-input  
+
+   flex items-center p-2 pl-3
+   rounded-full transition 
+   ease-in duration-300 
+ hover:bg-primary-ex-light;
+}
+
+.mix {
+	/* background-color: mix(); */
+}
