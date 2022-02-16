@@ -1,58 +1,31 @@
 <script lg="ts">
 	import githubIcon from '$lib/assets/icons/github.svg';
+	import copyIcon from '$lib/assets/icons/copy-icon.svg';
 </script>
 
 <div class="w-full h-screen flex">
 	<div class={'w-[410px] h-screen bg-white p-8 flex-shrink-0'}>
 		<div class="flex justify-between flex-col h-full">
-			<div class="grid gap-32">
-				<div class="flex justify-between w-full">
-					<img src={githubIcon} alt="github" />
+			<div class="grid gap-16">
+				<div class="flex justify-between w-full items-center">
+					<img src={githubIcon} class="w-8 h-8" alt="github" />
 
 					<!-- dark mode toggle button -->
-					<button id="theme-toggle" type="button" class="">
-						<!-- half moon svg -->
-						<svg
-							class="w-6 h-6 "
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-						</svg>
-
-						<!-- shining sun svg -->
-						<svg
-							class="w-6 h-6"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path
-								d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-								fill-rule="evenodd"
-								clip-rule="evenodd"
-							/>
-						</svg>
-					</button>
+					<label for="dark-mode-toggle" class="w-16 h-8 flex rounded-full bg-secondary-default">
+						<input type="checkbox" id="dark-mode-toggle" class="hidden" />
+						<span class="flex dark-mode-toggle items-center px-2 before:bg-white" />
+					</label>
 				</div>
 
-				<div class="grid gap-16">
+				<div class="grid gap-8">
 					<h4 class={'text-2xl text-primary-default'}>Generate random amharic placeholder text</h4>
 					<div class="grid gap-8">
-						<input type="number" class="w-full h-10 border rounded bg-bg-light" />
-						<div class="grid gap-8">
+						<input type="number" class="pl-2 w-full h-10 border rounded bg-bg-light" />
+						<div class="grid gap-4">
 							<!-- three radio inputs -->
 							<label
 								for="words"
-								class="flex cursor-pointer font-medium overflow-hidden
-							 items-center "
+								class="flex cursor-pointer font-medium overflow-hiddenitems-center "
 							>
 								<input
 									checked
@@ -69,8 +42,7 @@
 							</label>
 							<label
 								for="sentences"
-								class="flex cursor-pointer font-medium overflow-hidden
-							items-center "
+								class="flex cursor-pointer font-medium overflow-hidden items-center "
 							>
 								<input
 									type="radio"
@@ -86,8 +58,7 @@
 							</label>
 							<label
 								for="paragraphs"
-								class="flex cursor-pointer font-medium overflow-hidden
-							items-center "
+								class="flex cursor-pointer font-medium overflow-hidden items-center "
 							>
 								<input
 									type="radio"
@@ -99,6 +70,21 @@
 								<span
 									class="input-span peer-checked:bg-primary peer-checked:before:shadow-input-checked"
 									>paragraphs</span
+								>
+							</label>
+							<label
+								for="startWithAbebe"
+								class="flex cursor-pointer font-medium overflow-hidden items-center"
+							>
+								<input
+									type="checkbox"
+									id="startWithAbebe"
+									name="startWithAbebe"
+									class="peer hidden"
+								/>
+								<span
+									class="input-checkbox peer-checked:bg-primary peer-checked:before:shadow-input-checked"
+									>Start with Abebe Beso Bela</span
 								>
 							</label>
 						</div>
@@ -115,5 +101,25 @@
 		</div>
 	</div>
 
-	<div class={'h-screen w-full bg-bg-light'} />
+	<div class={'h-screen w-full bg-bg-light '}>
+		<div class="max-w-[720px] w-3/4  my-0 mx-auto pt-32 grid gap-16">
+			<div class="grid  gap-6">
+				<h1 class=" text-7xl">Abebe Beso Bela</h1>
+
+				<p class="text-lg ">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus pretium at dictum aenean
+					lacus, porttitor ac quam. A ut turpis augue feugiat mollis nisl dignissim. Massa pretium
+					ligula vel laoreet malesuada. Ut a mi adipiscing metus, sed turpis leo.
+				</p>
+			</div>
+
+			<div class="bg-white flex flex-col p-4 rounded-lg text-primary-default">
+				<!-- copy icon -->
+				<div class="flex justify-center items-center self-end mb-4">
+					<img src={copyIcon} alt="copy icon" />
+				</div>
+				<p class="w-full">your generated text will be here</p>
+			</div>
+		</div>
+	</div>
 </div>
