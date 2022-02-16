@@ -11,9 +11,11 @@
 					<img src={githubIcon} class="w-8 h-8" alt="github" />
 
 					<!-- dark mode toggle button -->
-					<label for="dark-mode-toggle" class="w-16 h-8 flex rounded-full bg-secondary-default">
-						<input type="checkbox" id="dark-mode-toggle" class="hidden" />
-						<span class="flex dark-mode-toggle items-center px-2 before:bg-white" />
+					<label for="dark-mode-toggle" class="w-14 h-7 flex rounded-full bg-secondary-default">
+						<input type="checkbox" id="dark-mode-toggle" class="peer hidden" />
+						<span
+							class="peer-checked:before:ml-5 flex  dark-mode-toggle items-center w-full px-2 before:bg-white"
+						/>
 					</label>
 				</div>
 

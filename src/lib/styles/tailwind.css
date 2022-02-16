@@ -33,7 +33,12 @@
 
 .dark-mode-toggle {
 	@apply before:content-['']
-   before:w-6 before:h-6 before:rounded-full;
+   before:w-5 before:h-5 before:rounded-full
+   before:transition before:duration-300 
+   before:ease-in  
+   before:ml-0
+   transition 
+   ease-in duration-300;
 }
 
 .mix {
