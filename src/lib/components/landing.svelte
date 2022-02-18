@@ -204,14 +204,12 @@
 						</div>
 					{:else if generatedData.length > 0}
 						<div>
-							{#if resScope === 'PARAGRAPHS'}
+							{#if resScope === 'PARAGRAPHS' || resScope === 'SENTENCES'}
 								{#each generatedData as data}
 									<p>{start ? `አበበ በሶ በላ ${data}` : data} <br /><br /></p>
 								{/each}
-							{:else if resScope === 'WORDS'}
-								{generatedData.join(' ')}
 							{:else}
-								{start ? `አበበ በሶ በላ ${generatedData.join('')}` : generatedData.join('')}
+								{generatedData.join(' ')}
 							{/if}
 						</div>
 					{/if}
