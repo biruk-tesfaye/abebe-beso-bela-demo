@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { theme } from '../../stores/them-store';
 	import githubIcon from '$lib/assets/icons/github.svg';
 	import copyIcon from '$lib/assets/icons/copy-icon.svg';
 
@@ -10,7 +11,15 @@
 	let scope = 'WORDS';
 	let resScope = 'WORDS';
 
+	let darkMode = typeof window !== 'undefined' ? localStorage.getItem('theme') === 'dark' : false;
+
+	const toggleDarkMode = () => {
+		theme.set(darkMode ? 'dark' : 'light');
+	};
+
 	let submit = false;
+
+	// console log whats on local storage
 
 	let generatedData = [];
 
@@ -62,8 +71,8 @@
 	<title>Home</title>
 </svelte:head>
 
-<div class="w-full h-screen flex flex-col lg:flex-row">
-	<div class={'w-full lg:w-1/3 h-screen bg-white p-4 pt-8 lg:p-8 '}>
+<div class={`w-full h-screen flex flex-col lg:flex-row ${darkMode ? 'dark' : ''}`}>
+	<div class={'w-full lg:w-1/3 h-screen bg-white dark:bg-bg-dark p-4 pt-8 lg:p-8 '}>
 		<div class="flex justify-between flex-col h-full">
 			<div class="grid gap-16">
 				<div class="flex justify-between w-full items-center">
@@ -71,7 +80,13 @@
 
 					<!-- dark mode toggle button -->
 					<label for="dark-mode-toggle" class="w-14 h-7 flex rounded-full bg-secondary-default">
-						<input type="checkbox" id="dark-mode-toggle" class="peer hidden" />
+						<input
+							on:change={toggleDarkMode}
+							bind:checked={darkMode}
+							type="checkbox"
+							id="dark-mode-toggle"
+							class="peer hidden"
+						/>
 						<span
 							class="peer-checked:before:ml-5 flex  dark-mode-toggle items-center w-full px-2 before:bg-white"
 						/>
@@ -174,11 +189,13 @@
 		</div>
 	</div>
 
-	<div class={'h-auto lg:h-screen w-full bg-white lg:bg-bg-light px-4 lg:px-0  pt-32'}>
+	<div
+		class={'h-auto lg:h-screen w-full bg-white lg:bg-bg-light  dark:bg-primary-light px-4 lg:px-0  pt-32'}
+	>
 		<div
 			class="w-full lg:max-w-[720px] lg:w-3/4 max-h-screen lg:max-h-[calc(100vh-192px)] overflow-y-hidden relative   my-0 mx-auto   flex flex-col"
 		>
-			<div class="grid  gap-6 mb-16">
+			<div class="grid  text-primary-default dark:text-secondary-text gap-6 mb-16">
 				<h1 class=" text-7xl">Abebe Beso Bela</h1>
 
 				<p class="text-lg ">
@@ -189,7 +206,7 @@
 			</div>
 
 			<div
-				class=" bg-bg-light lg:bg-white overflow-y-auto  flex-1  flex flex-col p-4 rounded-lg text-primary-default"
+				class=" bg-bg-light lg:bg-white dark:bg-secondary-text overflow-y-auto  flex-1  flex flex-col p-4 rounded-lg text-primary-default"
 			>
 				<!-- copy icon -->
 				<button on:click={copy} class=" justify-center items-center self-end mb-4">
