@@ -62,8 +62,8 @@
 	<title>Home</title>
 </svelte:head>
 
-<div class="w-full h-screen flex">
-	<div class={'w-[410px] h-screen bg-white p-8 flex-shrink-0'}>
+<div class="w-full h-screen flex flex-col lg:flex-row">
+	<div class={'w-full lg:w-1/3 h-screen bg-white p-4 pt-8 lg:p-8 '}>
 		<div class="flex justify-between flex-col h-full">
 			<div class="grid gap-16">
 				<div class="flex justify-between w-full items-center">
@@ -167,16 +167,16 @@
 				</div>
 			</div>
 
-			<div class="flex justify-between w-full">
+			<div class="hidden lg:flex justify-between w-full">
 				<span>About</span>
 				<span>Contact</span>
 			</div>
 		</div>
 	</div>
 
-	<div class={'h-screen w-full bg-bg-light pb-16 pt-32'}>
+	<div class={'h-auto lg:h-screen w-full bg-white lg:bg-bg-light px-4 lg:px-0  pt-32'}>
 		<div
-			class="max-w-[720px] w-3/4 max-h-[calc(100vh-192px)] overflow-y-hidden relative   my-0 mx-auto   flex flex-col"
+			class="w-full lg:max-w-[720px] lg:w-3/4 max-h-screen lg:max-h-[calc(100vh-192px)] overflow-y-hidden relative   my-0 mx-auto   flex flex-col"
 		>
 			<div class="grid  gap-6 mb-16">
 				<h1 class=" text-7xl">Abebe Beso Bela</h1>
@@ -189,7 +189,7 @@
 			</div>
 
 			<div
-				class="bg-white overflow-y-auto  flex-1  flex flex-col p-4 rounded-lg text-primary-default"
+				class=" bg-bg-light lg:bg-white overflow-y-auto  flex-1  flex flex-col p-4 rounded-lg text-primary-default"
 			>
 				<!-- copy icon -->
 				<button on:click={copy} class=" justify-center items-center self-end mb-4">
@@ -215,6 +215,11 @@
 					{/if}
 				</div>
 			</div>
+		</div>
+
+		<div class="flex lg:hidden  p-8 pt-32  justify-between w-full">
+			<span>About</span>
+			<span>Contact</span>
 		</div>
 	</div>
 </div>
