@@ -21,7 +21,9 @@ module.exports = {
 			},
 			boxShadow: {
 				input: 'inset 0 0 0 0.125em #146356',
-				'input-checked': 'inset 0 0 0 0.4378em #146356'
+				'input-checked': 'inset 0 0 0 0.4378em #146356',
+				'input-dark': 'inset 0 0 0 0.125em #A3DA8D',
+				'input-checked-dark': 'inset 0 0 0 0.4378em #A3DA8D'
 			}
 		},
 		plugins: []

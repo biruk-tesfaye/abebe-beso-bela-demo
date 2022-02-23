@@ -21,6 +21,7 @@
 	@apply before:flex 
 	before:content-['']
   before:bg-white 
+  
    before:w-6 before:h-6 
    before:transition before:duration-150 
    before:ease-in before:shadow-input  
@@ -29,6 +30,9 @@
    rounded-full transition 
    ease-in duration-300 
  hover:bg-primary-ex-light;
+}
+.dark-input-span {
+	@apply before:shadow-input-dark;
 }
 
 .dark-mode-toggle {

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { theme } from '../../stores/them-store';
 	import githubIcon from '$lib/assets/icons/github.svg';
+	import githubLightIcon from '$lib/assets/icons/github-light.svg';
+
 	import copyIcon from '$lib/assets/icons/copy-icon.svg';
 
 	import CopyToClipboard from '$lib/utils/copy-to-clipboard.svelte';
@@ -18,8 +20,6 @@
 	};
 
 	let submit = false;
-
-	// console log whats on local storage
 
 	let generatedData = [];
 
@@ -76,10 +76,17 @@
 		<div class="flex justify-between flex-col h-full">
 			<div class="grid gap-16">
 				<div class="flex justify-between w-full items-center">
-					<img src={githubIcon} class="w-8 h-8" alt="github" />
+					{#if darkMode}
+						<img src={githubLightIcon} class="w-8 h-8" alt="github" />
+					{:else}
+						<img src={githubIcon} class="w-8 h-8" alt="github" />
+					{/if}
 
 					<!-- dark mode toggle button -->
-					<label for="dark-mode-toggle" class="w-14 h-7 flex rounded-full bg-secondary-default">
+					<label
+						for="dark-mode-toggle"
+						class="w-14 h-7 flex rounded-full bg-secondary-default dark:bg-secondary-text"
+					>
 						<input
 							on:change={toggleDarkMode}
 							bind:checked={darkMode}
@@ -88,20 +95,22 @@
 							class="peer hidden"
 						/>
 						<span
-							class="peer-checked:before:ml-5 flex  dark-mode-toggle items-center w-full px-2 before:bg-white"
+							class="peer-checked:before:ml-5 flex  dark-mode-toggle items-center w-full px-2 before:bg-white dark:before:bg-primary-default"
 						/>
 					</label>
 				</div>
 
 				<div class="grid gap-8">
-					<h4 class={'text-2xl text-primary-default'}>Generate random amharic placeholder text</h4>
+					<h4 class={'text-2xl text-primary-default dark:text-secondary-text'}>
+						Generate random amharic placeholder text
+					</h4>
 					<form on:submit|preventDefault={generateLorem} class="grid gap-8">
 						<input
 							type="number"
 							bind:value={amount}
 							min="1"
 							max="100"
-							class="pl-2 w-full h-10 border rounded bg-bg-light"
+							class="pl-2 w-full h-10 border border-primary-default dark:text-secondary-text outline-none rounded bg-bg-light dark:bg-primary-bg"
 						/>
 						<div class="grid gap-4">
 							<!-- three radio inputs -->
@@ -119,7 +128,7 @@
 									bind:group={scope}
 								/>
 								<span
-									class="input-span peer-checked:bg-primary-ex-light peer-checked:before:shadow-input-checked"
+									class="input-span dark:text-secondary-text dark:before:bg-secondary-text  dark:hover:bg-primary-bg peer-checked:bg-primary-ex-light dark:peer-checked:bg-primary-bg peer-checked:before:shadow-input-checked"
 									>words</span
 								>
 							</label>
@@ -136,7 +145,7 @@
 									bind:group={scope}
 								/>
 								<span
-									class="input-span peer-checked:bg-primary peer-checked:before:shadow-input-checked"
+									class="input-span dark:text-secondary-text dark:before:bg-secondary-text  dark:hover:bg-primary-bg peer-checked:bg-primary-ex-light dark:peer-checked:bg-primary-bg peer-checked:before:shadow-input-checked"
 									>sentences</span
 								>
 							</label>
@@ -153,7 +162,7 @@
 									bind:group={scope}
 								/>
 								<span
-									class="input-span peer-checked:bg-primary peer-checked:before:shadow-input-checked"
+									class="input-span dark:text-secondary-text dark:before:bg-secondary-text  dark:hover:bg-primary-bg peer-checked:bg-primary-ex-light dark:peer-checked:bg-primary-bg peer-checked:before:shadow-input-checked"
 									>paragraphs</span
 								>
 							</label>
@@ -169,7 +178,7 @@
 									bind:checked={start}
 								/>
 								<span
-									class="input-checkbox peer-checked:bg-primary peer-checked:before:shadow-input-checked"
+									class="input-checkbox  peer-checked:bg-primary dark:hover:bg-primary-bg dark:peer-checked:bg-primary-bg dark:text-secondary-text peer-checked:before:shadow-input-checked"
 									>Start with Abebe Beso Bela</span
 								>
 							</label>
@@ -182,7 +191,7 @@
 				</div>
 			</div>
 
-			<div class="hidden lg:flex justify-between w-full">
+			<div class="hidden lg:flex dark:text-secondary-text justify-between w-full">
 				<span>About</span>
 				<span>Contact</span>
 			</div>
@@ -234,7 +243,7 @@
 			</div>
 		</div>
 
-		<div class="flex lg:hidden  p-8 pt-32  justify-between w-full">
+		<div class="flex lg:hidden dark:text-secondary-text  p-8 pt-32  justify-between w-full">
 			<span>About</span>
 			<span>Contact</span>
 		</div>
