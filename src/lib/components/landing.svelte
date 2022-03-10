@@ -5,8 +5,6 @@
 
 	import copyIcon from '$lib/assets/icons/copy-icon.svg';
 
-	import CopyToClipboard from '$lib/utils/copy-to-clipboard.svelte';
-
 	import { copy } from 'svelte-copy';
 
 	let copytext = '';
@@ -57,16 +55,6 @@
 				submit = false;
 			});
 	}
-
-	// const copy = () => {
-	// 	const app = new CopyToClipboard({
-	// 		target: document.getElementById('clipboard'),
-	// 		props: {
-	// 			text: copytext
-	// 		}
-	// 	});
-	// 	app.$destroy();
-	// };
 </script>
 
 <svelte:head>
@@ -78,7 +66,7 @@
 		<div class="flex justify-between flex-col h-full">
 			<div class="grid gap-16">
 				<div class="flex justify-between w-full items-center">
-					{#if $theme === 'light'}
+					{#if $theme === 'dark'}
 						<img src={githubLightIcon} class="w-8 h-8" alt="github" />
 					{:else}
 						<img src={githubIcon} class="w-8 h-8" alt="github" />
