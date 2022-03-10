@@ -13,10 +13,10 @@
 	let scope = 'WORDS';
 	let resScope = 'WORDS';
 
-	let darkMode = $theme === 'dark';
+	$: isDark = $theme === 'dark';
 
 	const toggleDarkMode = () => {
-		theme.set(darkMode ? 'dark' : 'light');
+		$theme = isDark ? 'light' : 'dark';
 	};
 
 	let submit = false;
@@ -61,7 +61,7 @@
 	<title>Home</title>
 </svelte:head>
 
-<div class={`w-full h-screen flex flex-col lg:flex-row ${$theme} `}>
+<div class={`w-full h-screen flex flex-col lg:flex-row ${$theme === 'dark' ? 'dark' : ''} `}>
 	<div class={'w-full lg:w-1/3 h-screen bg-white dark:bg-bg-dark p-4 pt-8 lg:p-8 '}>
 		<div class="flex justify-between flex-col h-full">
 			<div class="grid gap-16">
@@ -79,7 +79,7 @@
 					>
 						<input
 							on:change={toggleDarkMode}
-							bind:checked={darkMode}
+							bind:checked={isDark}
 							type="checkbox"
 							id="dark-mode-toggle"
 							class="peer hidden"
