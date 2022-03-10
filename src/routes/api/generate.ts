@@ -1,4 +1,5 @@
 import words from '$lib/data/_.json';
+import type { RequestHandler } from '@sveltejs/kit';
 export type IGenerate = {
 	amount: number;
 	start: boolean;
@@ -63,22 +64,8 @@ function generateSentence() {
 function getRandomNumber(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-type IGeneratedResponse = {
-	amount: number;
-	scope: 'PARAGRAPHS' | 'WORDS' | 'SENTENCES';
-	start: boolean;
-	generated: string[];
-};
-
-type EndpointOutput = {
-	status?: number;
-	headers?: Headers;
-	body?: IGeneratedResponse;
-};
-
-export async function post(request): Promise<EndpointOutput> {
-	const body = request.body as IGenerate;
+export const post: RequestHandler = async ({ request }) => {
+	const body = (await request.json()) as IGenerate;
 
 	return {
 		body: {
@@ -88,4 +75,4 @@ export async function post(request): Promise<EndpointOutput> {
 			generated: await generate(body)
 		}
 	};
-}
+};

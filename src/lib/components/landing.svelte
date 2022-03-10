@@ -7,13 +7,15 @@
 
 	import CopyToClipboard from '$lib/utils/copy-to-clipboard.svelte';
 
+	import { copy } from 'svelte-copy';
+
 	let copytext = '';
 	let amount: number = 1;
 	let start = false;
 	let scope = 'WORDS';
 	let resScope = 'WORDS';
 
-	let darkMode = typeof window !== 'undefined' ? localStorage.getItem('theme') === 'dark' : false;
+	let darkMode = $theme === 'dark';
 
 	const toggleDarkMode = () => {
 		theme.set(darkMode ? 'dark' : 'light');
@@ -56,27 +58,27 @@
 			});
 	}
 
-	const copy = () => {
-		const app = new CopyToClipboard({
-			target: document.getElementById('clipboard'),
-			props: {
-				text: copytext
-			}
-		});
-		app.$destroy();
-	};
+	// const copy = () => {
+	// 	const app = new CopyToClipboard({
+	// 		target: document.getElementById('clipboard'),
+	// 		props: {
+	// 			text: copytext
+	// 		}
+	// 	});
+	// 	app.$destroy();
+	// };
 </script>
 
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
 
-<div class={`w-full h-screen flex flex-col lg:flex-row ${darkMode ? 'dark' : ''}`}>
+<div class={`w-full h-screen flex flex-col lg:flex-row ${$theme} `}>
 	<div class={'w-full lg:w-1/3 h-screen bg-white dark:bg-bg-dark p-4 pt-8 lg:p-8 '}>
 		<div class="flex justify-between flex-col h-full">
 			<div class="grid gap-16">
 				<div class="flex justify-between w-full items-center">
-					{#if darkMode}
+					{#if $theme === 'light'}
 						<img src={githubLightIcon} class="w-8 h-8" alt="github" />
 					{:else}
 						<img src={githubIcon} class="w-8 h-8" alt="github" />
@@ -218,7 +220,11 @@
 				class=" bg-bg-light lg:bg-white dark:bg-secondary-text overflow-y-auto  flex-1  flex flex-col p-4 rounded-lg text-primary-default"
 			>
 				<!-- copy icon -->
-				<button on:click={copy} class=" justify-center items-center self-end mb-4">
+				<button
+					use:copy={copytext}
+					on:svelte-copy={(e) => alert(e.detail)}
+					class=" justify-center items-center self-end mb-4"
+				>
 					<img src={copyIcon} alt="copy icon" />
 				</button>
 				<div id={'clipboard'} class="w-full  ">
