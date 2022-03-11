@@ -2,7 +2,7 @@
 	import { theme } from '../../stores/them-store';
 	import githubIcon from '$lib/assets/icons/github.svg';
 	import githubLightIcon from '$lib/assets/icons/github-light.svg';
-
+	import Toast from '../components/_shared/toast.svelte';
 	import copyIcon from '$lib/assets/icons/copy-icon.svg';
 
 	import { copy } from 'svelte-copy';
@@ -55,11 +55,26 @@
 				submit = false;
 			});
 	}
+
+	let showToast = false;
+
+	const handleToast = () => {
+		showToast = true;
+		setTimeout(() => {
+			showToast = false;
+		}, 2000);
+	};
 </script>
 
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
+
+{#if showToast}
+	<div class={'flex justify-center absolute right-8 top-8  '}>
+		<Toast>Text copied</Toast>
+	</div>
+{/if}
 
 <div class={`w-full h-screen flex flex-col lg:flex-row ${$theme === 'dark' ? 'dark' : ''} `}>
 	<div class={'w-full lg:w-1/3 h-screen bg-white dark:bg-bg-dark p-4 pt-8 lg:p-8 '}>
@@ -210,12 +225,12 @@
 				<!-- copy icon -->
 				<button
 					use:copy={copytext}
-					on:svelte-copy={(e) => alert(e.detail)}
+					on:svelte-copy={handleToast}
 					class=" justify-center items-center self-end mb-4"
 				>
 					<img src={copyIcon} alt="copy icon" />
 				</button>
-				<div id={'clipboard'} class="w-full  ">
+				<div class="w-full  ">
 					{#if submit}
 						<div>loading...</div>
 					{:else if generatedData.length === 0}
