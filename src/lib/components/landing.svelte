@@ -81,11 +81,13 @@
 		<div class="flex justify-between flex-col h-full">
 			<div class="grid gap-16">
 				<div class="flex justify-between w-full items-center">
-					{#if $theme === 'dark'}
-						<img src={githubLightIcon} class="w-8 h-8" alt="github" />
-					{:else}
-						<img src={githubIcon} class="w-8 h-8" alt="github" />
-					{/if}
+					<a href="https://github.com/biruk-tesfaye/abebe-beso-bela">
+						{#if $theme === 'dark'}
+							<img src={githubLightIcon} class="w-8 h-8" alt="github" />
+						{:else}
+							<img src={githubIcon} class="w-8 h-8" alt="github" />
+						{/if}
+					</a>
 
 					<!-- dark mode toggle button -->
 					<label
@@ -220,13 +222,13 @@
 			</div>
 
 			<div
-				class=" bg-bg-light lg:bg-white dark:bg-secondary-text overflow-y-auto  flex-1  flex flex-col p-4 rounded-lg text-primary-default"
+				class=" relative bg-bg-light lg:bg-white dark:bg-secondary-text overflow-y-auto  flex-1  flex flex-col p-4 rounded-lg text-primary-default"
 			>
 				<!-- copy icon -->
 				<button
 					use:copy={copytext}
 					on:svelte-copy={handleToast}
-					class=" justify-center items-center self-end mb-4"
+					class=" justify-center items-center self-end mb-4  sticky top-0 right-0 "
 				>
 					<img src={copyIcon} alt="copy icon" />
 				</button>
