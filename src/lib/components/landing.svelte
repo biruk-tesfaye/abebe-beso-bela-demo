@@ -7,6 +7,8 @@
 
 	import { copy } from 'svelte-copy';
 
+	let copyBtn;
+
 	let copytext = '';
 	let amount: number = 1;
 	let start = false;
@@ -49,6 +51,8 @@
 				} else {
 					copytext = data.generated.join('');
 				}
+
+				copyBtn.focus();
 			})
 			.catch(() => {
 				console.error;
@@ -226,9 +230,10 @@
 			>
 				<!-- copy icon -->
 				<button
+					bind:this={copyBtn}
 					use:copy={copytext}
 					on:svelte-copy={handleToast}
-					class=" justify-center items-center self-end mb-4  sticky top-0 right-0 "
+					class=" focus:border-2 focus:rounded focus:shadow-xl  focus:border-secondary-default w-9 h-9  justify-center items-center self-end mb-4  sticky top-0 right-0 "
 				>
 					<img src={copyIcon} alt="copy icon" />
 				</button>
