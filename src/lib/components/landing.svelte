@@ -195,7 +195,9 @@
 							</label>
 						</div>
 
-						<button type="submit" class="w-full bg-primary-default px-4 py-3 rounded text-white"
+						<button
+							type="submit"
+							class="w-full duration-150 hover:bg-primary-bg bg-primary-default px-4 py-3 rounded text-white"
 							>Generate</button
 						>
 					</form>
@@ -203,8 +205,16 @@
 			</div>
 
 			<div class="hidden lg:flex dark:text-secondary-text justify-between w-full">
-				<span>About</span>
-				<span>Contact</span>
+				<a
+					href="/"
+					class=" text-primary-default dark:text-secondary-text hover:underline duration-75"
+					>About</a
+				>
+				<a
+					href="/"
+					class=" text-primary-default dark:text-secondary-text hover:underline duration-75"
+					>Contributors</a
+				>
 			</div>
 		</div>
 	</div>
@@ -260,8 +270,12 @@
 		</div>
 
 		<div class="flex lg:hidden dark:text-secondary-text  p-8 pt-32  justify-between w-full">
-			<span>About</span>
-			<span>Contact</span>
+			<a href="/" class=" text-primary-default dark:text-secondary-text hover:underline duration-75"
+				>About</a
+			>
+			<a href="/" class=" text-primary-default dark:text-secondary-text hover:underline duration-75"
+				>Contributors</a
+			>
 		</div>
 	</div>
 </div>
