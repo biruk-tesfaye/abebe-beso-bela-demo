@@ -8,6 +8,7 @@
 	import { copy } from 'svelte-copy';
 
 	let copyBtn;
+	let scrollTOElement;
 
 	let copytext = '';
 	let amount: number = 1;
@@ -53,6 +54,7 @@
 				}
 
 				copyBtn.focus();
+				scrollTOElement.scrollIntoView({ behavior: 'smooth' });
 			})
 			.catch(() => {
 				console.error;
@@ -236,6 +238,7 @@
 			</div>
 
 			<div
+				bind:this={scrollTOElement}
 				class=" relative bg-bg-light lg:bg-white dark:bg-secondary-text overflow-y-auto  flex-1  flex flex-col p-4 rounded-lg text-primary-default"
 			>
 				<!-- copy icon -->
