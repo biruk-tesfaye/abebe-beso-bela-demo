@@ -2,7 +2,6 @@ import words from '$lib/data/_.json';
 import type { RequestHandler } from '@sveltejs/kit';
 export type IGenerate = {
 	amount: number;
-	start: boolean;
 	scope: 'PARAGRAPHS' | 'WORDS' | 'SENTENCES';
 };
 
@@ -13,7 +12,7 @@ const MAX_SENTENCES_PER_PARAGRAPH = 10;
 const MIN_SENTENCES_PER_PARAGRAPH = 3;
 
 export async function generate(body: IGenerate) {
-	const { amount, start, scope } = body;
+	const { amount, scope } = body;
 	let generated = [];
 
 	//  if scope is paragraph then generated will contain amount of paragraphs
@@ -70,7 +69,6 @@ export const post: RequestHandler = async ({ request }) => {
 	return {
 		body: {
 			amount: body.amount,
-			start: body.start,
 			scope: body.scope,
 			generated: await generate(body)
 		}

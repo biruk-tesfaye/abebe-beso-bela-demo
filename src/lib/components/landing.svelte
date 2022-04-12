@@ -35,7 +35,6 @@
 			},
 			body: JSON.stringify({
 				amount: amount,
-				start: start,
 				scope: scope
 			})
 		})
