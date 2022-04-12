@@ -1,8 +1,10 @@
 import words from '$lib/data/_.json';
 import type { RequestHandler } from '@sveltejs/kit';
+export type scopeType = 'PARAGRAPHS' | 'WORDS' | 'SENTENCES';
 export type IGenerate = {
 	amount: number;
-	scope: 'PARAGRAPHS' | 'WORDS' | 'SENTENCES';
+	scope: scopeType;
+	startWith: boolean;
 };
 
 const MAX_WORDS_PER_SENTENCE = 15;
@@ -12,7 +14,7 @@ const MAX_SENTENCES_PER_PARAGRAPH = 10;
 const MIN_SENTENCES_PER_PARAGRAPH = 3;
 
 export async function generate(body: IGenerate) {
-	const { amount, scope } = body;
+	const { amount, scope, startWith } = body;
 	let generated = [];
 
 	//  if scope is paragraph then generated will contain amount of paragraphs
@@ -33,6 +35,10 @@ export async function generate(body: IGenerate) {
 		for (let i = 0; i < amount; i++) {
 			generated.push(`${words[Math.floor(Math.random() * words.length)]} `);
 		}
+	}
+
+	if (startWith && (scope === 'PARAGRAPHS' || scope === 'SENTENCES')) {
+		generated[0] = 'አበበ በሶ በላ '.concat(generated[0]);
 	}
 	return generated;
 }
@@ -63,14 +69,3 @@ function generateSentence() {
 function getRandomNumber(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-export const post: RequestHandler = async ({ request }) => {
-	const body = (await request.json()) as IGenerate;
-
-	return {
-		body: {
-			amount: body.amount,
-			scope: body.scope,
-			generated: await generate(body)
-		}
-	};
-};

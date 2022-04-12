@@ -4,17 +4,17 @@
 	import githubLightIcon from '$lib/assets/icons/github-light.svg';
 	import Toast from '../components/_shared/toast.svelte';
 	import copyIcon from '$lib/assets/icons/copy-icon.svg';
-
+	import { generate } from '$lib/api/generate';
+	import type { scopeType } from '$lib/api/generate';
 	import { copy } from 'svelte-copy';
 
-	let copyBtn;
+	let copyBtn: HTMLButtonElement;
 	let scrollTOElement;
 
 	let copytext = '';
 	let amount: number = 1;
 	let start = false;
-	let scope = 'WORDS';
-	let resScope = 'WORDS';
+	let scope: scopeType = 'WORDS';
 
 	$: isDark = $theme === 'dark';
 
@@ -28,28 +28,22 @@
 
 	function generateLorem() {
 		submit = true;
-		fetch('/api/generate', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				amount: amount,
-				scope: scope
-			})
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				submit = false;
-				generatedData = data.generated;
-				resScope = data.scope;
 
-				if (data.scope === 'WORDS') {
-					copytext = data.generated.join(' ');
-				} else if (data.scope === 'PARAGRAPHS') {
-					copytext = data.generated.join('\n');
+		generate({
+			amount,
+			scope: scope,
+			startWith: start
+		})
+			.then((data) => {
+				generatedData = data;
+				submit = false;
+
+				if (scope === 'WORDS') {
+					copytext = data.join(' ');
+				} else if (scope === 'PARAGRAPHS') {
+					copytext = data.join('\n');
 				} else {
-					copytext = data.generated.join('');
+					copytext = data.join('');
 				}
 
 				copyBtn.focus();
@@ -258,13 +252,11 @@
 						</div>
 					{:else if generatedData.length > 0}
 						<div>
-							{#if resScope === 'PARAGRAPHS' || resScope === 'SENTENCES'}
+							<p>
 								{#each generatedData as data}
-									<p>{start ? `አበበ በሶ በላ ${data}` : data} <br /><br /></p>
+									<p>{data} <br /><br /></p>
 								{/each}
-							{:else}
-								{generatedData.join(' ')}
-							{/if}
+							</p>
 						</div>
 					{/if}
 				</div>
