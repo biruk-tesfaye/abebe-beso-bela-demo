@@ -1,38 +1,19 @@
-# create-svelte
+# Abebe beso bela - Lorem ipsum for Amharic text
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+> Lorem ipsum for Amharic text. The project is named after a well-known Amharic sentence (አበበ በሶ በላ።) that is used to educate children how to construct sentences.
 
-## Creating a project
+A [SvelteKit](https://kit.svelte.dev/) demo app created using the package [abebe-beso-bela](https://github.com/biruk-tesfaye/abebe-beso-bela)
 
-If you're seeing this, you've probably already done this step. Congrats!
+### How to run locally
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+1. `gh repo clone biruk-tesfaye/abebe-beso-bela-demo`
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+2. Install dependencies `pnpm install`
 
-> Note: the `@next` is temporary
+3. Run the project `pnpm dev`
 
-## Developing
+## License
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Made with &hearts; in Addis Ababa.
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+MIT License &copy; 2022 [Biruk H.](https://biruk.kelaltech.com/)
