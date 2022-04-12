@@ -4,8 +4,8 @@
 	import githubLightIcon from '$lib/assets/icons/github-light.svg';
 	import Toast from '../components/_shared/toast.svelte';
 	import copyIcon from '$lib/assets/icons/copy-icon.svg';
-	import { generate } from '$lib/api/generate';
-	import type { scopeType } from '$lib/api/generate';
+	import { generate } from '$lib/generate';
+	import type { scopeType } from '$lib/generate';
 	import { copy } from 'svelte-copy';
 
 	let copyBtn: HTMLButtonElement;
