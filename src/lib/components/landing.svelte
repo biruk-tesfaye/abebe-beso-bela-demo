@@ -15,8 +15,10 @@
 	let start = false;
 	let scope: 'PARAGRAPHS' | 'WORDS' | 'SENTENCES' = 'WORDS';
 
-	$: isDark = $theme === 'dark';
+	// set default store theme value to dark
+	$theme = 'dark';
 
+	$: isDark = $theme === 'dark';
 	const toggleDarkMode = () => {
 		$theme = isDark ? 'light' : 'dark';
 	};
