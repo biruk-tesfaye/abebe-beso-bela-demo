@@ -4,8 +4,7 @@
 	import githubLightIcon from '$lib/assets/icons/github-light.svg';
 	import Toast from '../components/_shared/toast.svelte';
 	import copyIcon from '$lib/assets/icons/copy-icon.svg';
-	import { generate } from '$lib/generate';
-	import type { scopeType } from '$lib/generate';
+	import { generate } from 'abebe-beso-bela';
 	import { copy } from 'svelte-copy';
 
 	let copyBtn: HTMLButtonElement;
@@ -14,7 +13,7 @@
 	let copytext = '';
 	let amount: number = 1;
 	let start = false;
-	let scope: scopeType = 'WORDS';
+	let scope: 'PARAGRAPHS' | 'WORDS' | 'SENTENCES' = 'WORDS';
 
 	$: isDark = $theme === 'dark';
 
@@ -29,30 +28,24 @@
 	function generateLorem() {
 		submit = true;
 
-		generate({
+		generatedData = generate({
 			amount,
-			scope: scope,
+			scope,
 			startWith: start
-		})
-			.then((data) => {
-				generatedData = data;
-				submit = false;
+		});
 
-				if (scope === 'WORDS') {
-					copytext = data.join(' ');
-				} else if (scope === 'PARAGRAPHS') {
-					copytext = data.join('\n');
-				} else {
-					copytext = data.join('');
-				}
+		if (scope === 'WORDS') {
+			copytext = generatedData.join(' ');
+		} else if (scope === 'PARAGRAPHS') {
+			copytext = generatedData.join('\n');
+		} else {
+			copytext = generatedData.join('');
+		}
 
-				copyBtn.focus();
-				scrollTOElement.scrollIntoView({ behavior: 'smooth' });
-			})
-			.catch(() => {
-				console.error;
-				submit = false;
-			});
+		copyBtn.focus();
+		scrollTOElement.scrollIntoView({ behavior: 'smooth' });
+
+		submit = false;
 	}
 
 	let showToast = false;
