@@ -1,5 +1,4 @@
-import words from '$lib/data/_.json';
-import type { RequestHandler } from '@sveltejs/kit';
+import { words } from '$lib/data/words';
 export type scopeType = 'PARAGRAPHS' | 'WORDS' | 'SENTENCES';
 export type IGenerate = {
 	amount: number;
