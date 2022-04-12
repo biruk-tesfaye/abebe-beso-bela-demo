@@ -219,9 +219,8 @@
 				<h1 class=" text-7xl">Abebe Beso Bela</h1>
 
 				<p class="text-lg ">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus pretium at dictum aenean
-					lacus, porttitor ac quam. A ut turpis augue feugiat mollis nisl dignissim. Massa pretium
-					ligula vel laoreet malesuada. Ut a mi adipiscing metus, sed turpis leo.
+					Generate Amharic placeholder text. The project is named after a well-known Amharic
+					sentence (አበበ በሶ በላ።) that is used to educate children how to construct sentences.
 				</p>
 			</div>
 
